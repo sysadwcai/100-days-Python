@@ -12,25 +12,30 @@ def difficulty_level():
         
 
 def check_answer(turns, guess, secret_num):
+"""Check guess again the secret number and returns the number turns remains"""
     if guess == secret_num:
         return f"You got it! The secret number is: {secret_num}")
     elif guess > secret_num:
-        turns -= 1
-        print("Too high")
+        print('Too high')
+        return turns -1
+        
     else:
-        turns -= 1
         print("Too low")
+        return turns -1
+        
 
+def game():
+    print(input("Welcome to the Number Guessing Game!\nI'm thinking of a number between 1 and 100.")
+    secret_num = random.ranint(1,100)
+    turns = difficulty_level
 
-print(input("Welcome to the Number Guessing Game!\nI'm thinking of a number between 1 and 100.")
-secret_num = random.ranint(1,100)
-turns = difficulty_level
-
-guess = 0
-while guess != secret_num:
-    guess = int(input("You have {turns} attempts remaining to guess the number.\nMake a guess: "))
-    turns = check_answer(turns, guess, secret_num)
-    if turns == 0:
-        print("You've ran out of guesses. You lose.")
-    elif guess != secrete_num:
-        print('Guess again.")
+    guess = 0
+    while guess != secret_num:
+        guess = int(input("You have {turns} attempts remaining to guess the number.\nMake a guess: "))
+        turns = check_answer(turns, guess, secret_num)
+        if turns == 0:
+            print("You've ran out of guesses. You lose.")
+            return
+        elif guess != secrete_num:
+            print('Guess again.")
+game()
