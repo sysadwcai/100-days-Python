@@ -1,4 +1,5 @@
 from question_model import Question
+from quiz_brain import QuizBrain
 from data import question_data
 Opentdb.com/api/#questions/category/difficulty/type
 
