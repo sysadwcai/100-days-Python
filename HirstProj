@@ -25,10 +25,10 @@ color_list =[
 t.penup()
 t.speed(0)
 t.hideturtle()
-t.setheading(225)
-t.forward(300)
-t.right(225)
-
+#t.setheading(225)
+#t.forward(300)
+#t.right(225)
+t.setpos(-212.13,-212.13)
 num_of_dot = 100
 for dot_count in range(1, num_of_dot + 1):
     t.dot(20, random.choice(color_list))
