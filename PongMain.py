@@ -4,6 +4,7 @@ from paddle import Paddle
 from scoreboard import Scoreboard
 import time
 
+WINNING_SCORE = 3
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.bgcolor('black')
@@ -40,8 +41,18 @@ while game_is_on:
     if ball.xcor() > 380:
         ball.reset_position()
         scoreboard.l_point()
+        if scoreboard.l_score == WINNING_SCORE:
+            scoreboard.update_scoreboard()
+            time.sleep(0.01)
+            screen.update()
+            game_is_on = False
         
     # detech L paddle misses
     if ball.xcor() < -380:
         ball.reset_position()
         scoreboard.r_point()
+        if scoreboard.r_score == WINNING_SCORE:
+            scoreboard.update_scoreboard()
+            time.sleep(0.01)
+            screen.update()
+            game_is_on = False
