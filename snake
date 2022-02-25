@@ -23,6 +23,13 @@ class Snake:
         new_segment.goto(pos)
         self.segments.append(new_segment)
     
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000) # send the previous snake off screen
+        self.segments.clear() # clear all the previous segments
+        self.create_snake() # recreate the snake
+        self.head = self.segments[0] # reestablish the snake head
+    
     def extend(self):
         self.add_segment(self.segments[-1].position()) # adding a block to the end of the snake body after scored point
     
