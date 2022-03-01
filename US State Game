@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+import turtle
 import pandas as pd
 
 screen = Screen()
@@ -6,3 +6,27 @@ screen.title('U.S. State Game')
 image = 'blank_states_img.gif'
 screen.addshape(image)
 turtle.shape(image)
+
+df = pd.read_csv('50_states.csv')
+all_states = df.state.to_list()
+
+guess_state = []
+while len(guess_state) < 50:
+
+  answer_state = screen.textinput(title=f'{len(guess_state}/50 guessed correct states', 
+                                    prompt="What's another state's name?")
+  if answer_state in guess_state:
+    pass
+  elif answer_state in all_states:
+    guess_state.append(answer_state)
+    
+  if answer_state in all_states:
+    t= turtle.Turtle()
+    t.penup()
+    t.hideturtle()
+    state_data = df[df.state == answer_state]
+    t.goto(int(state_data.x), int(state_data.y))
+    t.write(answer_state)
+    
+ screen.write('Congradutation! Guessed 50/50 states')   
+ screen.mainloop()
