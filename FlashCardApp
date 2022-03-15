@@ -1,0 +1,23 @@
+from tkinter import *
+BACKGROUNDCOLOR = "#B1DDC6"
+
+window = Tk()
+window.titel('Flashy')
+window.config(padx=50, pady=50)
+
+canvas = Canvas(width=800, height=526, bg=BACKGROUNDCOLOR)
+front_image = PhotoImage(file='card_front.png')
+canvas.create_image(400, 263, image=front_img) # 400, 263 are half of width and height of the canvas
+canvas.create_text(400, 150, text='Title', font=('Ariel', 40, 'italic')) # 400, 150 are XY coordinates
+canvas.create_text(400, 263, text='Word', font=('Ariel', 60, 'bold')) # 400, 263 are XY coordinates
+canvas.grid(row=0, column=0, columnspan=2)
+
+wrong_image = PhotoImage(file='wrong.png')
+wrong_button = Button(image=wrong_image, highlightthickness=0)
+wrong_button.grid(row=1, column=0)
+
+right_image = PhotoImage(file='right.png')
+right_button = Button(image=right_image, highlightthickness=0)
+right_button.grid(row=1, column=1)
+
+window.mainloop()
