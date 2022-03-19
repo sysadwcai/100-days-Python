@@ -1,4 +1,16 @@
-question_data = [
+import requests
+
+parameters ={
+    'amount': 10,
+    'type': 'boolean'
+}
+
+response = requests.get(url='https://opentdb.com/api-php', params=parameters)
+response.raise_for_status()
+data = response.json()
+question_data = data['results']
+
+'''question_data = [
         {"category": "Science: Computers",
          "type": "boolean",
          "difficulty": "easy",
@@ -59,4 +71,4 @@ question_data = [
          "question": "The Python programming language gets its name from the British comedy group &quot;Monty Python.&quot;",
          "correct_answer": "True",
          "incorrect_answers": ["False"]}
-]
+]'''
