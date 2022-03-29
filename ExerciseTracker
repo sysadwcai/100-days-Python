@@ -39,6 +39,16 @@ TODAY_TIME = datetime.now().strftime(%H:%M:%S)
 for exercise in data['exercises']:
     sheet_inputs:{
         'workouts': {
-            
+            'date': TODAY_DATE,
+            'time': TODAY_TIME,
+            'exercise': exercise['name'].title(),
+            'duration': exercise['duration_min'],
+            'calories': exercise['nf_calories']
+            }
+     }
+    
+    sheet_response = requests.get(url=SHEET_ENDPOINT, json=sheet_inputs)
+    sheet_response.raise_for_status()
+    print(sheet_response.text)
         
     
