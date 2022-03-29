@@ -5,6 +5,7 @@ from datetime import datetime
 APP_ID = os.environ.get('APP_ID')
 API_KEY = os.environ.get('API_KEY')
 USERNAME = os.environ.get('USERNAME')
+TOKEN = os.environ.get('TOKEN')
 
 EXERCISE_ENDPOINT = 'https://trackapi.nutritionix.com/v2/natural/exercise'
 SHEETY_ENDPOINT = f"https://api.sheety.co/{USERNAME}/workoutTracking/workouts"
@@ -46,9 +47,17 @@ for exercise in data['exercises']:
             'calories': exercise['nf_calories']
             }
      }
-    
-    sheet_response = requests.get(url=SHEET_ENDPOINT, json=sheet_inputs)
+    # no authentication
+    sheet_response = requests.post(url=SHEET_ENDPOINT, json=sheet_inputs)
     sheet_response.raise_for_status()
     print(sheet_response.text)
         
+    # basic authentication
+    sheet_response = requests.post(SHEET_ENDPOINT, json=sheet_inputs, auth=(USERNAME, PASSWORD))
+    
+    # bearer token authentication
+    bearer_headers = {
+        'Authorization': Bearer {TOKEN}
+        }
+    sheet_response = requests.post(url=SHEET_ENDPOINT, json=sheet_inputs, headers = bearer_headers)
     
