@@ -1,0 +1,9 @@
+import os
+
+TEQUILA_ENDPOINT = 'https://tequila-api.kiwi.com'
+TEQUILA_API_KEY = os.environ.get('TEQUILA_API_KEY')
+
+class FlightSearch: # this class responsible for talking to the flight search API
+    def get_destination_code(self, city): 
+        code = 'TESTING'
+        return code
