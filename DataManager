@@ -1,0 +1,26 @@
+import os 
+import requests
+import pprint
+
+USERNAME = os.environ.get('USERNAME')
+SHEETY_ENDPOINT = f"https://api.sheety.co/{USERNAME}/flightDeals/prices"
+
+class DataManager: # this class is responsible for talking to the Google sheet.
+    def __init__(self):
+        self.get_destination_data = {}
+    
+    def get_destination_data(self): # use SHEETY API to GET all the data in that sheet and print it out.
+        response = requests.get(SHEETY_ENDPOINT)
+        data = response.json()
+        destination_data = data['price']
+        # pprint(data)
+        return self.destination_data
+        
+    def update_destination_codes(self):
+        for city in self.destination_data:
+            new_data = {
+                'price': {'iataCode': city['iataCode']}
+                    }
+            response = requests.put(url=f"{SHEETY_ENDPOINT}/{city['id']}", json=new_data)
+            print(response.text)
+        
